@@ -1,3 +1,4 @@
+<!-- TEMPLATE -->
 <template>
 
     <header class="fixed top-0 left-0 w-full z-50 bg-transparent">
@@ -63,51 +64,49 @@
 
       <!-- SECCIÓN: QUÉ PODEMOS TRAER -->
         <!-- BENTO GRID-->
-        <section id="podemos-traer" data-bg="bg-amber-50" class="py-20 px-6">
-          <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[650px]">
-            
-            <!-- 1. ÁLBUMES-->
-            <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-[3rem] shadow-lg">
-              <img :src="imgalbum" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-10 text-white">
-                <h3 class="text-3xl font-black uppercase italic italic">Álbumes</h3>
-                <p class="text-sm font-medium opacity-90">Toda la discografía y POBs.</p>
-              </div>
-            </div>
-
-            <!-- 2. LIGHTSTICKS-->
-            <div class="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-[3rem] shadow-lg">
-              <img :src="imglightstick" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all flex items-center p-8">
-                <h3 class="text-2xl font-black text-white uppercase drop-shadow-lg">Lightsticks</h3>
-              </div>
-            </div>
-
-            <!-- 3. MERCH OFICIAL -->
-            <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[3rem] shadow-lg">
-              <img :src="imgmerch" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <div class="absolute inset-0 flex items-end justify-center p-6">
-                  <span class="bg-white/90 backdrop-blur-sm px-6 py-2 rounded-full text-xs font-bold text-pink-600 uppercase shadow-sm">
-                      Merch Oficial
-                  </span>
-              </div>
-            </div>
-
-            <!-- 4. ALIEXPRESS -->
-            <div class="md:col-span-1 md:row-span-1 bg-pink-500 flex flex-col justify-center items-center p-6 rounded-[3rem] hover:rotate-3 transition-transform cursor-pointer shadow-lg shadow-pink-200">
-              
-              <!-- Contenedor de la foto -->
-              <div class="w-60 h-60 bg-white/20 rounded-full flex items-center justify-center mb-3 overflow-hidden p-2">
-                <img :src="imgali" class="w-full h-full object-contain" 
-                />
-              </div>
-
-              <h3 class="text-white font-bold text-center leading-tight uppercase text-sm">
-                Pedidos de AliExpress
-              </h3>
-            </div>
+        <section id="podemos-traer" data-bg="bg-amber-50" class="py-24 px-6">
+   <!-- TÍTULO CON AIRE (Para ambos modos) -->
+          <div class="max-w-7xl mx-auto mb-16 px-4">
+            <h2 class="text-5xl md:text-7xl font-black text-pink-600 uppercase italic leading-none">
+              ¿Qué podemos <br class="md:hidden"> <span class="text-black">traer?</span>
+            </h2>
           </div>
+
+          <!-- VISTA MÓVIL: Carrusel (Solo se ve en celulares) -->
+          <div class="md:hidden">
+            <Carousel :items-to-show="1.1" :snap-align="'center'" :wrap-around="true">
+              <Slide v-for="item in categorias" :key="item.id">
+                <div class="px-3 w-full h-[500px]">
+                  
+                  <!-- Si es AliExpress usamos tu diseño rosa, si no, el de imagen -->
+                  <div v-if="item.isAli" class="w-full h-full bg-pink-500 rounded-[3rem] flex flex-col justify-center items-center p-8 shadow-xl">
+                    <div class="w-48 h-48 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <img :src="item.img" class="w-32 h-32 object-contain" />
+                    </div>
+                    <h3 class="text-white font-bold text-2xl uppercase italic text-center">{{ item.titulo }}</h3>
+                  </div>
+
+                  <div v-else class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-xl">
+                    <img :src="item.img" class="absolute inset-0 w-full h-full object-cover" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent flex flex-col justify-end p-10 text-left">
+                      <h3 class="text-3xl font-black text-white uppercase italic">{{ item.titulo }}</h3>
+                      <p class="text-white/80 text-sm mt-2">{{ item.desc }}</p>
+                    </div>
+                  </div>
+
+                </div>
+              </Slide>
+            </Carousel>
+          </div>
+
+          <!-- VISTA DESKTOP: Tu Grid original (Solo se ve en PC) -->
+          <div class="hidden md:grid grid-cols-4 grid-rows-2 gap-8 h-[700px]">
+              <!-- AQUÍ PEGA TUS 4 DIVS DE TARJETAS QUE TENÍAS ANTES (Álbumes, Lightsticks, etc.) -->
+              <!-- Tal cual los tenías, porque estos solo se activarán en pantallas grandes -->
+          </div>
+
         </section>
+
 
 
         <!-- SECCIÓN: HORARIO DE ATENCIÓN -->
@@ -171,6 +170,7 @@
     </footer>
 </template>
 
+<!-- SCRIPT -->
 <script setup>
     import { ref,onMounted } from 'vue'
     const menuAbierto = ref(false)
@@ -246,7 +246,14 @@
     import imgalbum from './assets/album.jpg'
     import imglightstick from './assets/lightsticks.jpg' 
     import imgmerch from './assets/kpopplush.jpg' 
-    import imgali from './assets/merch.jpg' 
+    import imgali from './assets/merch.jpg'
+
+    const categorias = [
+    {id: 1, titulo: 'Álbumes', desc: 'Toda la discografía y POBs.', img: imgalbum, clase: 'col-span-2 row-span-2' },
+    {id: 2, titulo: 'Lightsticks', desc: '', img: imglightstick, clase: 'col-span-2 row-span-1' },
+    {id: 3, titulo: 'Merch Oficial', desc: '', img: imgmerch, clase: 'col-span-1 row-span-1' }
+    ]
+ 
 
     const navegacion = [
     {nombre: 'Inicio', href: '#inicio' },
