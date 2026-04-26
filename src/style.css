@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap");
+@import "tailwindcss";
+
+.logo-bubble {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-shadow: 0 0 2px #410e34;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.custom-pagination {
+  --vc-pgn-width: 12px;
+  --vc-pgn-height: 12px;
+  --vc-pgn-margin: 5px;
+  --vc-pgn-border-radius: 50%;
+  --vc-pgn-background-color: rgba(255, 255, 255, 0.5);
+  --vc-pgn-active-color: #ff00cc; /* El rosa de tu marca */
+}
+
