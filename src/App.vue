@@ -8,19 +8,22 @@
         <button class="md:hidden text-2xl px-2" @click="menuAbierto = !menuAbierto" aria-label="Abrir menú"> 
             {{ menuAbierto ? '✕' : '☰' }}
         </button>
-        <div v-if="menuAbierto">
-            <a href="#inicio" @click="menuAbierto = false">Inicio</a>
-            <a href="#podemos-traer" @click="menuAbierto = false">Qué podemos traer</a>
-            <a href="#encargos-pasados" @click="menuAbierto = false">Encargos pasados</a>
-            <a href="#contacto" @click="menuAbierto = false">Contacto</a>
-            <a href="#horario" @click="menuAbierto = false">Horario de atención</a>
+        <div v-if="menuAbierto" class="md:hidden absolute top-full left-0 w-full bg-black/80 backdrop-blur-md flex flex-col items-center py-6 gap-6 transition-all">
+            <a v-for="item in navegacion" 
+              :key="item.href" 
+              :href="item.href" 
+              @click="menuAbierto = false"
+              class="text-xl hover:text-pink-500 transition">
+              {{ item.nombre }}
+            </a>
         </div>
-        <div class= "hidden md:flex items-center gap-10">
-        <a href="#inicio" class="hover:text-[#ff00cc] hover:drop-shadow-[0_0_10px_#ff00cc] transition" text-white-400>Inicio</a>
-        <a href="#podemos-traer" class="hover:text-[#ff00cc] hover:drop-shadow-[0_0_10px_#ff00cc] transition">Qué podemos traer</a>
-        <a href="#encargos-pasados" class= "hover:text-[#ff00cc] hover:drop-shadow-[0_0_10px_#ff00cc] transition">Encargos pasados</a>
-        <a href="#contacto" class= "hover:text-[#ff00cc] hover:drop-shadow-[0_0_10px_#ff00cc] transition">Contacto</a>
-        <a href="#horario" class= "hover:text-[#ff00cc] hover:drop-shadow-[0_0_10px_#ff00cc] transition">Horario de atención</a>
+        <div class="hidden md:flex items-center gap-10">
+            <a v-for="item in navegacion" 
+              :key="item.href" 
+              :href="item.href" 
+              class="hover:text-[#ff00cc] hover:drop-shadow-[0_0_10px_#ff00cc] transition">
+              {{ item.nombre }}
+            </a>
         </div>
       </nav>
     </header>
@@ -244,6 +247,15 @@
     import imglightstick from './assets/lightsticks.jpg' 
     import imgmerch from './assets/kpopplush.jpg' 
     import imgali from './assets/merch.jpg' 
+
+    const navegacion = [
+    {nombre: 'Inicio', href: '#inicio' },
+    {nombre: 'Qué podemos traer', href: '#podemos-traer' },
+    {nombre: 'Encargos pasados', href: '#encargos-pasados' },
+    {nombre: 'Contacto', href: '#contacto' },
+    {nombre: 'Horario de atención', href: '#horario' }
+    ]
+
 
     
 </script>
