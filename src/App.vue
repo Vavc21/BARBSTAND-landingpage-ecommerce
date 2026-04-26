@@ -65,7 +65,7 @@
       <!-- SECCIÓN: QUÉ PODEMOS TRAER -->
         <!-- BENTO GRID-->
         <section id="podemos-traer" data-bg="bg-amber-50" class="py-24 px-6">
-   <!-- TÍTULO CON AIRE (Para ambos modos) -->
+        <!-- TÍTULO CON AIRE (Para ambos modos) -->
           <div class="max-w-7xl mx-auto mb-16 px-4">
             <h2 class="text-5xl md:text-7xl font-black text-pink-600 uppercase italic leading-none">
               ¿Qué podemos <br class="md:hidden"> <span class="text-black">traer?</span>
@@ -93,18 +93,51 @@
                       <p class="text-white/80 text-sm mt-2">{{ item.desc }}</p>
                     </div>
                   </div>
-
                 </div>
               </Slide>
             </Carousel>
           </div>
 
-          <!-- VISTA DESKTOP: Tu Grid original (Solo se ve en PC) -->
+                    <!-- VISTA DESKTOP: Tu Grid original (Solo se ve en PC) -->
           <div class="hidden md:grid grid-cols-4 grid-rows-2 gap-8 h-[700px]">
-              <!-- AQUÍ PEGA TUS 4 DIVS DE TARJETAS QUE TENÍAS ANTES (Álbumes, Lightsticks, etc.) -->
-              <!-- Tal cual los tenías, porque estos solo se activarán en pantallas grandes -->
-          </div>
+            
+            <!-- 1. ÁLBUMES (Tus 2 columnas y 2 filas) -->
+            <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-[3rem] shadow-lg">
+              <img :src="imgalbum" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-10 text-white">
+                <h3 class="text-3xl font-black uppercase italic">Álbumes</h3>
+                <p class="text-sm font-medium opacity-90">Toda la discografía y POBs.</p>
+              </div>
+            </div>
 
+            <!-- 2. LIGHTSTICKS (Tus 2 columnas y 1 fila) -->
+            <div class="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-[3rem] shadow-lg">
+              <img :src="imglightstick" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all flex items-center p-8">
+                <h3 class="text-2xl font-black text-white uppercase drop-shadow-lg">Lightsticks</h3>
+              </div>
+            </div>
+
+            <!-- 3. MERCH OFICIAL (Tu columna 1 y fila 1) -->
+            <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[3rem] shadow-lg">
+              <img :src="imgmerch" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute inset-0 flex items-end justify-center p-6">
+                  <span class="bg-white/90 backdrop-blur-sm px-6 py-2 rounded-full text-xs font-bold text-pink-600 uppercase shadow-sm">
+                      Merch Oficial
+                  </span>
+              </div>
+            </div>
+
+            <!-- 4. ALIEXPRESS (Tu diseño rosa con el círculo) -->
+            <div class="md:col-span-1 md:row-span-1 bg-pink-500 flex flex-col justify-center items-center p-6 rounded-[3rem] hover:rotate-3 transition-transform cursor-pointer shadow-lg shadow-pink-200">
+              <div class="w-48 h-48 bg-white/20 rounded-full flex items-center justify-center mb-3 overflow-hidden p-2">
+                <img :src="imgali" class="w-full h-full object-contain" />
+              </div>
+              <h3 class="text-white font-bold text-center leading-tight uppercase text-sm">
+                Pedidos de AliExpress
+              </h3>
+            </div>
+          </div>
         </section>
 
 
